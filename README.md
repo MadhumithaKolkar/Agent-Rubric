@@ -8,6 +8,9 @@ Current tools (LangSmith, Langfuse, etc.) give you logging. AgentRubric gives yo
 
 When an LLM agent runs, it produces a *trajectory* — a sequence of thoughts, tool calls, observations, and a final answer. Knowing whether that trajectory was actually *correct* is hard: Did it call the right tools? With the right arguments? Did it wander in loops? Did it finish the task at all? AgentRubric answers all of that with a single `evaluate()` call.
 
+<img width="648" height="844" alt="image" src="https://github.com/user-attachments/assets/060586b8-f418-4785-b3dc-1ff024078abb" />
+
+
 ```
 trajectory (list of steps)
         │
