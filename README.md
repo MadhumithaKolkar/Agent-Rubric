@@ -2,7 +2,7 @@
 
 **Trajectory-level evaluation for LLM agents. Zero dependencies, five metrics, one score.**
 
-> 📦 **Live on PyPI:** [pypi.org/project/agentrubric](https://pypi.org/project/agentrubric/0.1.0/) — `pip install agentrubric`
+> 📦 **Live on PyPI:** [pypi.org/project/agentrubric](https://pypi.org/project/agentrubric/0.1.1/) — `pip install agentrubric`
 
 Current tools (LangSmith, Langfuse, etc.) give you logging. AgentRubric gives you scores.
 

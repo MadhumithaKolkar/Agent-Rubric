@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentrubric"
-version = "0.1.0"
-description = "Trajectory-level evaluation for LLM agents"
+version = "0.1.1"
+description = "AgentRubric: trajectory-level evaluation for LLM agents"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -26,4 +26,4 @@ openai = ["openai>=1.0.0"]
 dev = ["pytest", "black", "ruff"]
 
 [project.urls]
-Homepage = "https://github.com/madhumithakolkar/agentlens"
+Homepage = "https://github.com/MadhumithaKolkar/Agent-Rubric"
