@@ -1,4 +1,4 @@
-# AgentLens - Architecture and Build Plan
+# AgentRubric - Architecture and Build Plan
 
 A lightweight, framework-agnostic Python library for evaluating LLM agent trajectories.
 Built for engineers who need to measure whether their agents are actually doing the right things,
@@ -18,11 +18,11 @@ When an LLM agent runs, it produces a trajectory - a sequence of steps like:
 Evaluating whether this trajectory is correct is hard. Did it call the right tools?
 Did it call them with the right arguments? Did it take unnecessary steps? Did it fail silently?
 Current tools (LangSmith, Langfuse, etc.) give you logging. They do not give you scores.
-AgentLens gives you scores.
+AgentRubric gives you scores.
 
 ---
 
-## What AgentLens Does (v0.1 scope)
+## What AgentRubric Does (v0.1 scope)
 
 Five metrics, one evaluator, one report. That is the entire v0.1.
 
@@ -30,7 +30,7 @@ Five metrics, one evaluator, one report. That is the entire v0.1.
 trajectory (list of steps)
         |
         v
-   AgentLens.evaluate()
+   AgentRubric.evaluate()
         |
         v
 EvaluationReport
@@ -46,8 +46,8 @@ EvaluationReport
 ## Folder Structure
 
 ```
-agentlens/
-├── agentlens/
+agentrubric/
+├── agentrubric/
 │   ├── __init__.py               - public API surface (what users import)
 │   ├── core/
 │   │   ├── __init__.py
@@ -74,7 +74,7 @@ agentlens/
 ├── examples/
 │   ├── basic_evaluation.py       - simplest possible usage
 │   └── langchain_agent_eval.py   - real agent evaluation example
-├── pyproject.toml                - packaging config (pip install agentlens)
+├── pyproject.toml                - packaging config (pip install agentrubric)
 ├── README.md                     - the public face of the project
 └── ARCHITECTURE.md               - this file
 ```
@@ -116,7 +116,7 @@ class Trajectory:
 
 ### EvaluationReport
 
-The output of running AgentLens on a trajectory.
+The output of running AgentRubric on a trajectory.
 
 ```python
 @dataclass
@@ -248,7 +248,7 @@ The entire library is designed so that 90% of users only ever touch two things:
 `Trajectory` to describe their agent run, and `evaluate()` to score it.
 
 ```python
-from agentlens import Trajectory, Step, evaluate
+from agentrubric import Trajectory, Step, evaluate
 
 # Build a trajectory from your agent's run
 trajectory = Trajectory(
@@ -281,13 +281,13 @@ print(report)                     # pretty printed summary
 
 ## Integrations (integrations/)
 
-These are thin parsers that convert existing agent framework output into AgentLens `Trajectory` objects.
+These are thin parsers that convert existing agent framework output into AgentRubric `Trajectory` objects.
 Users who already use LangChain or OpenAI do not have to manually build trajectories.
 
 ### LangChain Integration
 
 ```python
-from agentlens.integrations.langchain import from_langchain
+from agentrubric.integrations.langchain import from_langchain
 
 # agent_output is what you get back from a LangChain AgentExecutor run
 trajectory = from_langchain(agent_output, task="your original task")
@@ -297,7 +297,7 @@ report = evaluate(trajectory, expected_tools=["search"])
 ### OpenAI Integration
 
 ```python
-from agentlens.integrations.openai import from_openai_messages
+from agentrubric.integrations.openai import from_openai_messages
 
 # messages is the full messages list from an OpenAI function-calling run
 trajectory = from_openai_messages(messages, task="your original task")
@@ -318,7 +318,7 @@ Completion is the simplest (binary). Build and test each one before moving to th
 Write a test in `tests/test_metrics.py` for each metric as you go.
 
 **Step 3 - The evaluate() function (1 hour)**
-Wire all five metrics together in `agentlens/__init__.py`.
+Wire all five metrics together in `agentrubric/__init__.py`.
 The `evaluate()` function calls all five metrics and assembles an `EvaluationReport`.
 Overall score = 0.3 * tool_accuracy + 0.3 * argument_fidelity + 0.2 * trajectory_length + 0.2 * completion.
 
@@ -340,7 +340,7 @@ Then `pip install build && python -m build` to create the distribution package.
 
 **Step 8 - PyPI release**
 Create an account at pypi.org, then `pip install twine && twine upload dist/*`.
-`pip install agentlens` should work from anywhere in the world after this.
+`pip install agentrubric` should work from anywhere in the world after this.
 
 ---
 
@@ -352,7 +352,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "agentlens"
+name = "agentrubric"
 version = "0.1.0"
 description = "Trajectory-level evaluation for LLM agents"
 readme = "README.md"
@@ -375,7 +375,7 @@ openai = ["openai>=1.0.0"]
 dev = ["pytest", "black", "ruff"]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/agentlens"
+Homepage = "https://github.com/MadhumithaKolkar/Agent-Rubric"
 ```
 
 Note: zero required dependencies in the core library. This is intentional.
