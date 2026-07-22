@@ -144,6 +144,14 @@ report = evaluate(trajectory, expected_tools=["search"])
 
 ---
 
+## Roadmap
+
+- YAML/JSON case files so expectations don't have to live inline in Python
+- Configurable metric weights instead of the fixed 30/30/20/20 split
+- More framework integrations beyond LangChain and OpenAI
+
+---
+
 ## Development
 
 ```bash
