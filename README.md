@@ -4,7 +4,7 @@
 
 > 📦 **Live on PyPI:** [pypi.org/project/agentrubric](https://pypi.org/project/agentrubric/0.1.1/) — `pip install agentrubric`
 
-Current tools (LangSmith, Langfuse, etc.) give you logging. AgentRubric gives you scores.
+Current tools (LangSmith, Langfuse, etc.) give you logging. AgentRubric gives you scores .
 
 When an LLM agent runs, it produces a *trajectory* — a sequence of thoughts, tool calls, observations, and a final answer. Knowing whether that trajectory was actually *correct* is hard: Did it call the right tools? With the right arguments? Did it wander in loops? Did it finish the task at all? AgentRubric answers all of that with a single `evaluate()` call.
 
