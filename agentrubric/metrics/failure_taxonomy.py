@@ -34,12 +34,4 @@ def failure_taxonomy(trajectory: Trajectory, tool_registry: list[str] | None = N
         else:
             seen_calls[key] = i
 
-    # detect no completion
-    if not trajectory.completed():
-        failures.append({
-            "type": "NO_COMPLETION",
-            "step": None,
-            "description": "Trajectory ended without a final answer",
-        })
-
     return failures
