@@ -41,6 +41,12 @@ pip install agentrubric[langchain]   # LangChain agent parsing
 pip install agentrubric[openai]      # OpenAI function-calling parsing
 ```
 
+Then say hello:
+
+```bash
+agentrubric
+```
+
 ---
 
 ## Quickstart

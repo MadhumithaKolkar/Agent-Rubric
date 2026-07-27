@@ -27,3 +27,6 @@ dev = ["pytest", "black", "ruff"]
 
 [project.urls]
 Homepage = "https://github.com/MadhumithaKolkar/Agent-Rubric"
+
+[project.scripts]
+agentrubric = "agentrubric.cli:main"
